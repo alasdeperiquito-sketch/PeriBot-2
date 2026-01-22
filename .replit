@@ -1,0 +1,18 @@
+modules = ["nodejs-20"]
+
+[workflows]
+
+[[workflows.workflow]]
+name = "Run peribot"
+mode = "sequential"
+author = 50438238
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node bot.js"
+
+[[ports]]
+localPort = 3000
+externalPort = 80
+run = "node bot.js"
+entrypoint = "bot.js"

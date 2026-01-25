@@ -28,11 +28,11 @@ export function startBot() {
 
   // Load Commands
   if (fs.existsSync(commandsPath)) {
-    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.cjs'));
     console.log('--- Cargando Comandos ---');
     for (const file of commandFiles) {
       const filePath = path.join(commandsPath, file);
-      // Dynamic import for ESM
+      // Dynamic import for CJS in ESM
       import(filePath).then(module => {
         const command = module.default || module;
         if (command && command.data && command.data.name) {
@@ -49,7 +49,7 @@ export function startBot() {
 
   // Load Events
   if (fs.existsSync(eventsPath)) {
-    const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+    const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.cjs'));
     console.log('--- Cargando Eventos ---');
     for (const file of eventFiles) {
       const filePath = path.join(eventsPath, file);
